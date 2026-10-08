@@ -15,15 +15,20 @@ function eventColumn(parent, item, bigSize) {
   const col = parent.addStack();
   col.layoutVertically();
   const h = headline(item.st);
-  addText(col, h.big, bigSize, "heavy", "#FF7A18", { lines: 1, minScale: 0.5 });
-  addText(col, h.small, 11, "regular", "#BBBBBB", { lines: 1 });
+  addText(col, h.big, bigSize, "heavy", "#5EE7FF", { lines: 1, minScale: 0.5 });
+  addText(col, h.small, 11, "regular", "#C9CEF5", { lines: 1 });
   addText(col, item.ev.title, 12, "bold", "#FFFFFF", { lines: 2, minScale: 0.7 });
   return col;
 }
 
 function buildWidget(ranked, quote, family) {
   const w = new ListWidget();
-  w.backgroundColor = new Color("#14141C");
+  const bg = new LinearGradient();
+  bg.colors = [new Color("#1B1F4B"), new Color("#2A1B57"), new Color("#0B2447")];
+  bg.locations = [0, 0.55, 1];
+  bg.startPoint = new Point(0, 0);
+  bg.endPoint = new Point(1, 1);
+  w.backgroundGradient = bg;
   w.setPadding(14, 14, 14, 14);
 
   // Refresh just after midnight so the number changes on its own.
@@ -35,7 +40,7 @@ function buildWidget(ranked, quote, family) {
   if (!ranked.length) {
     addText(w, "All done 🎉", 20, "heavy", "#FFFFFF");
     w.addSpacer(6);
-    addText(w, quote, 12, "regular", "#BBBBBB", { minScale: 0.7 });
+    addText(w, quote, 12, "regular", "#C9CEF5", { minScale: 0.7 });
     return w;
   }
 
@@ -52,7 +57,7 @@ function buildWidget(ranked, quote, family) {
     eventColumn(row, item, i === 0 ? 44 : 30);
   });
   w.addSpacer();
-  addText(w, quote, 12, "regular", "#DDDDDD", { lines: 3, minScale: 0.75 });
+  addText(w, quote, 12, "regular", "#E6E9FF", { lines: 3, minScale: 0.75 });
   return w;
 }
 

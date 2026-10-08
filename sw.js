@@ -1,5 +1,5 @@
 // Network-first so updates arrive when online; cache fallback so it works offline.
-const CACHE = "countdown-v1";
+const CACHE = "countdown-v2";
 const FILES = [
   "./", "index.html", "style.css", "core.js", "quotes.js", "app.js",
   "widget.template.js", "manifest.webmanifest",
