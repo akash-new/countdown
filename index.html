@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Countdown</title>
+<meta name="theme-color" content="#14141c">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Countdown">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <p class="eyebrow" id="today"></p>
+      <h1>Countdown</h1>
+    </div>
+    <div class="seg" role="radiogroup" aria-label="Quote tone">
+      <button type="button" data-mode="gentle" role="radio">Gentle</button>
+      <button type="button" data-mode="drill" role="radio">Drill</button>
+    </div>
+  </header>
+
+  <section class="quote" aria-live="polite">
+    <p class="quote-text" id="quote"></p>
+    <p class="quote-meta" id="quote-meta"></p>
+  </section>
+
+  <section id="events" class="events"></section>
+
+  <button type="button" class="add" id="add">+ Add countdown</button>
+
+  <details class="setup" id="setup">
+    <summary>Home-screen widget &amp; daily reminder</summary>
+    <h3>Widget (Scriptable, free)</h3>
+    <ol>
+      <li>Install <strong>Scriptable</strong> from the App Store.</li>
+      <li>Tap the button below to copy the widget script.</li>
+      <li>Open Scriptable, tap <strong>+</strong>, paste, and name it <em>Countdown</em>.</li>
+      <li>Long-press your home screen, tap <strong>+</strong>, add a <strong>Scriptable</strong> widget (small or medium).</li>
+      <li>Long-press that widget, tap <strong>Edit Widget</strong>, set <strong>Script</strong> to Countdown and <strong>When Interacting</strong> to <em>Run Script</em>.</li>
+    </ol>
+    <button type="button" class="primary" id="copy">Copy widget script</button>
+    <p class="hint" id="copy-hint">If you add or change a countdown, or switch tone, copy and paste the script again.</p>
+    <textarea id="script" readonly rows="4" hidden></textarea>
+
+    <h3>Daily reminder (Shortcuts, free)</h3>
+    <ol>
+      <li>Shortcuts → <strong>Automation</strong> → <strong>+</strong> → <strong>Time of Day</strong> (e.g. 7:00), Daily, <em>Run Immediately</em>.</li>
+      <li>Add action <strong>Run Script</strong> (Scriptable), pick Countdown, and set its input to the text <em>notify</em>.</li>
+      <li>Add action <strong>Get Dictionary from Input</strong>, then <strong>Show Notification</strong>: Title = dictionary value <em>title</em>, Body = value <em>body</em>.</li>
+    </ol>
+  </details>
+</main>
+
+<dialog id="dlg">
+  <form method="dialog" id="form">
+    <h2 id="dlg-title">New countdown</h2>
+    <label>Name <input name="title" required maxlength="40" placeholder="e.g. Half Marathon"></label>
+    <label>Type
+      <select name="category">
+        <option value="run">🏃 Race / training</option>
+        <option value="career">💼 Interview / exam</option>
+        <option value="any">🎯 Other</option>
+      </select>
+    </label>
+    <label>Date <input name="date" type="date" required></label>
+    <label>Ends (optional, for multi-day events) <input name="endDate" type="date"></label>
+    <div class="row">
+      <button type="button" class="danger" id="del" hidden>Delete</button>
+      <span class="spacer"></span>
+      <button type="button" id="cancel">Cancel</button>
+      <button type="submit" class="primary">Save</button>
+    </div>
+  </form>
+</dialog>
+
+<script src="core.js"></script>
+<script src="quotes.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
