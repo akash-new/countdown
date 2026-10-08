@@ -3,7 +3,7 @@ const CACHE = "countdown-v1";
 const FILES = [
   "./", "index.html", "style.css", "core.js", "quotes.js", "app.js",
   "widget.template.js", "manifest.webmanifest",
-  "icons/icon-192.png", "icons/icon-512.png", "icons/apple-touch-icon.png",
+  "icon-192.png", "icon-512.png", "apple-touch-icon.png",
 ];
 
 self.addEventListener("install", (e) => {
